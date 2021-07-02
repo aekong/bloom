@@ -156,6 +156,9 @@ export const ListingView = (props: ListingProps) => {
     !listing.applicationPickUpAddressType &&
     listing.applicationMethods?.length === 0
 
+  const showMap =
+    listing.buildingAddress.latitude !== null && listing.buildingAddress.longitude !== null
+
   return (
     <article className="flex flex-wrap relative max-w-5xl m-auto">
       <header className="image-card--leader">
@@ -251,35 +254,40 @@ export const ListingView = (props: ListingProps) => {
 
             {preferencesSection}
 
-            <ListSection
-              title={t("listings.sections.additionalEligibilityTitle")}
-              subtitle={t("listings.sections.additionalEligibilitySubtitle")}
-            >
-              <>
-                {listing.creditHistory && (
-                  <InfoCard title={t("listings.creditHistory")}>
-                    <ExpandableText className="text-sm text-gray-700">
-                      {listing.creditHistory}
-                    </ExpandableText>
-                  </InfoCard>
-                )}
-                {listing.rentalHistory && (
-                  <InfoCard title={t("listings.rentalHistory")}>
-                    <ExpandableText className="text-sm text-gray-700">
-                      {listing.rentalHistory}
-                    </ExpandableText>
-                  </InfoCard>
-                )}
-                {listing.criminalBackground && (
-                  <InfoCard title={t("listings.criminalBackground")}>
-                    <ExpandableText className="text-sm text-gray-700">
-                      {listing.criminalBackground}
-                    </ExpandableText>
-                  </InfoCard>
-                )}
-                {buildingSelectionCriteria}
-              </>
-            </ListSection>
+            {(listing.creditHistory ||
+              listing.rentalHistory ||
+              listing.criminalBackground ||
+              buildingSelectionCriteria) && (
+              <ListSection
+                title={t("listings.sections.additionalEligibilityTitle")}
+                subtitle={t("listings.sections.additionalEligibilitySubtitle")}
+              >
+                <>
+                  {listing.creditHistory && (
+                    <InfoCard title={t("listings.creditHistory")}>
+                      <ExpandableText className="text-sm text-gray-700">
+                        {listing.creditHistory}
+                      </ExpandableText>
+                    </InfoCard>
+                  )}
+                  {listing.rentalHistory && (
+                    <InfoCard title={t("listings.rentalHistory")}>
+                      <ExpandableText className="text-sm text-gray-700">
+                        {listing.rentalHistory}
+                      </ExpandableText>
+                    </InfoCard>
+                  )}
+                  {listing.criminalBackground && (
+                    <InfoCard title={t("listings.criminalBackground")}>
+                      <ExpandableText className="text-sm text-gray-700">
+                        {listing.criminalBackground}
+                      </ExpandableText>
+                    </InfoCard>
+                  )}
+                  {buildingSelectionCriteria}
+                </>
+              </ListSection>
+            )}
           </ul>
         </ListingDetailItem>
 
@@ -364,7 +372,7 @@ export const ListingView = (props: ListingProps) => {
           </div>
         </ListingDetailItem>
 
-        {listing.buildingAddress.latitude && listing.buildingAddress.longitude && (
+        {showMap && (
           <ListingDetailItem
             imageAlt={t("listings.neighborhoodBuildings")}
             imageSrc="/images/listing-neighborhood.svg"
