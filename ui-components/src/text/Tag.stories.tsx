@@ -17,6 +17,8 @@ export const success = () => <Tag styleType={AppearanceStyleType.success}>Succes
 
 export const warning = () => <Tag styleType={AppearanceStyleType.warning}>Warning</Tag>
 
+export const reserved = () => <Tag styleType={AppearanceStyleType.reserved}>Reserved</Tag>
+
 export const small = () => <Tag size={AppearanceSizeType.small}>Warning</Tag>
 
 // TODO: export const big = () => <Tag size={AppearanceSizeType.big}>Warning</Tag>

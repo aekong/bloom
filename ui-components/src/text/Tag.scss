@@ -54,6 +54,10 @@
     }
   }
 
+  &.is-reserved {
+    @apply bg-accent-warm;
+  }
+
   &.is-accent-cool {
     &:not(.is-light-mode) {
       @apply text-white;

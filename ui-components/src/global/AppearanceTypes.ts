@@ -5,6 +5,7 @@ export enum AppearanceStyleType {
   alert = "is-alert",
   warning = "is-warning",
   info = "is-info",
+  reserved = "is-reserved",
   accentCool = "is-accent-cool",
   accentWarm = "is-accent-warm",
   closed = "is-closed",
